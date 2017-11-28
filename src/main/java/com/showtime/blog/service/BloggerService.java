@@ -37,7 +37,9 @@ public class BloggerService {
             return map;
         }
 
-        Blogger blogger = bloggerMapper.selectOne(new Blogger(username));
+        Blogger b1 = new Blogger();
+        b1.setAccount(username);
+        Blogger blogger = bloggerMapper.selectOne(b1);
 
         if (blogger != null) {
             map.put("msgname", "用户名已经被注册");
@@ -46,6 +48,7 @@ public class BloggerService {
 
         // 密码强度
         blogger = new Blogger();
+        blogger.setAccount(username);
         blogger.setName(username);
         blogger.setSalt(UUID.randomUUID().toString().substring(0, 5));
         //默认头像
@@ -72,7 +75,9 @@ public class BloggerService {
             return map;
         }
 
-        Blogger blogger = bloggerMapper.selectOne(new Blogger(username));
+        Blogger b1 = new Blogger();
+        b1.setAccount(username);
+        Blogger blogger = bloggerMapper.selectOne(b1);
 
         if (blogger == null) {
             /** 如果博主第一次登录，则为其注册 */
@@ -101,13 +106,14 @@ public class BloggerService {
         date.setTime(date.getTime() + 1000*3600*24);
         //超时时间
         ticket.setExpired(date);
+        ticket.setStatus((byte) 1);
         ticket.setTicket(UUID.randomUUID().toString().replaceAll("-", ""));
         loginTicketMapper.insert(ticket);
         return ticket.getTicket();
     }
 
-    public Blogger getBlogger(int id) {
-        return bloggerMapper.selectByPrimaryKey(1);
+    public Blogger getBlogger() {
+        return bloggerMapper.selectByPrimaryKey(1L);
     }
 
     public void logout(String ticket) {

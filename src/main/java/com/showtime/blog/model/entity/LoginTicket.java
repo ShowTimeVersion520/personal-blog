@@ -1,10 +1,7 @@
 package com.showtime.blog.model.entity;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import java.util.Date;
+import javax.persistence.*;
 
 @Table(name = "login_ticket")
 public class LoginTicket {
@@ -100,12 +97,5 @@ public class LoginTicket {
      */
     public void setTicket(String ticket) {
         this.ticket = ticket;
-    }
-
-    public LoginTicket(String ticket) {
-        this.ticket = ticket;
-    }
-
-    public LoginTicket() {
     }
 }

@@ -11,7 +11,6 @@
     <result column="salt" property="salt" jdbcType="VARCHAR" />
     <result column="head_url" property="headUrl" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="gender" property="gender" jdbcType="CHAR" />
     <result column="introduce" property="introduce" jdbcType="VARCHAR" />
   </resultMap>
 </mapper>

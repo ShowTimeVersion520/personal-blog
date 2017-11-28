@@ -1,9 +1,12 @@
 package com.showtime.blog.model.entity;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.Date;
-import javax.persistence.*;
 
-public class Article {
+public class Post {
     /**
      * 表主键
      */
@@ -12,15 +15,21 @@ public class Article {
     private Long id;
 
     /**
+     * 作者id号
+     */
+    @Column(name = "author_id")
+    private Long authorId;
+
+    /**
      * 标题
      */
     private String title;
 
     /**
-     * 标签id号
+     * 分类id号
      */
-    @Column(name = "label_id")
-    private Long labelId;
+    @Column(name = "category_id")
+    private Long categoryId;
 
     /**
      * 添加时间
@@ -58,6 +67,24 @@ public class Article {
     }
 
     /**
+     * 获取作者id号
+     *
+     * @return author_id - 作者id号
+     */
+    public Long getAuthorId() {
+        return authorId;
+    }
+
+    /**
+     * 设置作者id号
+     *
+     * @param authorId 作者id号
+     */
+    public void setAuthorId(Long authorId) {
+        this.authorId = authorId;
+    }
+
+    /**
      * 获取标题
      *
      * @return title - 标题
@@ -76,21 +103,21 @@ public class Article {
     }
 
     /**
-     * 获取标签id号
+     * 获取分类id号
      *
-     * @return label_id - 标签id号
+     * @return category_id - 分类id号
      */
-    public Long getLabelId() {
-        return labelId;
+    public Long getCategoryId() {
+        return categoryId;
     }
 
     /**
-     * 设置标签id号
+     * 设置分类id号
      *
-     * @param labelId 标签id号
+     * @param categoryId 分类id号
      */
-    public void setLabelId(Long labelId) {
-        this.labelId = labelId;
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
     }
 
     /**

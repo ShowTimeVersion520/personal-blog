@@ -2,7 +2,6 @@ package com.showtime.blog.interceptor;
 
 
 import com.showtime.blog.constant.AttributeNameConstant;
-import com.showtime.blog.constant.LoginTicketFieldConstant;
 import com.showtime.blog.mapper.BloggerMapper;
 import com.showtime.blog.mapper.LoginTicketMapper;
 import com.showtime.blog.model.base.HostHolder;
@@ -12,13 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
-import tk.mybatis.mapper.entity.Example;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by nowcoder on 2016/7/3.
@@ -49,13 +46,15 @@ public class PassportInterceptor implements HandlerInterceptor {
 
         if (ticket != null) {
 
-            LoginTicket loginTicket = loginTicketMapper.selectOne(new LoginTicket(ticket));
+            LoginTicket t1 = new LoginTicket();
+            t1.setTicket(ticket);
+            LoginTicket loginTicket = loginTicketMapper.selectOne(t1);
 
-            if (loginTicket == null || loginTicket.getExpired().before(new Date()) || loginTicket.getStatus() != 0) {
+            if (loginTicket == null || loginTicket.getExpired().before(new Date()) || loginTicket.getStatus() == 0) {
                 return true;
             }
 
-            Blogger blogger = bloggerMapper.selectByPrimaryKey(1);
+            Blogger blogger = bloggerMapper.selectByPrimaryKey(1L);
             hostHolder.setBlogger(blogger);
         }
         return true;

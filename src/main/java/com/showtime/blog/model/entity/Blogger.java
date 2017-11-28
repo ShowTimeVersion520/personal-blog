@@ -37,11 +37,6 @@ public class Blogger {
     private String name;
 
     /**
-     * 性别
-     */
-    private String gender;
-
-    /**
      * 介绍
      */
     private String introduce;
@@ -155,24 +150,6 @@ public class Blogger {
     }
 
     /**
-     * 获取性别
-     *
-     * @return gender - 性别
-     */
-    public String getGender() {
-        return gender;
-    }
-
-    /**
-     * 设置性别
-     *
-     * @param gender 性别
-     */
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    /**
      * 获取介绍
      *
      * @return introduce - 介绍
@@ -188,12 +165,5 @@ public class Blogger {
      */
     public void setIntroduce(String introduce) {
         this.introduce = introduce;
-    }
-
-    public Blogger(String account) {
-        this.account = account;
-    }
-
-    public Blogger() {
     }
 }
